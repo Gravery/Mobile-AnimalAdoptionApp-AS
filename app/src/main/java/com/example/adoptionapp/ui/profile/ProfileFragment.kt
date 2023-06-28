@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.adoptionapp.FragmentNavigation
 import com.example.adoptionapp.databinding.FragmentProfileBinding
+import com.example.adoptionapp.ui.login.LoginFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment(){
     private var _binding: FragmentProfileBinding? = null
@@ -26,6 +30,12 @@ class ProfileFragment : Fragment(){
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.btnLogout.setOnClickListener {
+            Firebase.auth.signOut()
+            var navLogin = activity as FragmentNavigation
+            navLogin.navigateFrag(LoginFragment(), false)
+        }
 
         val textView: TextView = binding.textProfile
         profileViewModel.text.observe(viewLifecycleOwner) {

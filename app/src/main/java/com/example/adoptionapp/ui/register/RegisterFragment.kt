@@ -12,8 +12,11 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.adoptionapp.FragmentNavigation
 import com.example.adoptionapp.R
+import com.example.adoptionapp.ui.home.HomeFragment
 import com.example.adoptionapp.ui.login.LoginFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -24,6 +27,7 @@ class RegisterFragment : Fragment() {
     private lateinit var username: EditText
     private lateinit var password: EditText
     private lateinit var confirmPassword: EditText
+    private lateinit var btnRegisterReg: Button
     private lateinit var fAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +47,9 @@ class RegisterFragment : Fragment() {
         username = view.findViewById(R.id.reg_username)
         password = view.findViewById(R.id.reg_password)
         confirmPassword = view.findViewById(R.id.reg_confirm_password)
+        btnRegisterReg = view.findViewById(R.id.btn_register_reg)
+        fAuth = Firebase.auth
+
 
         view.findViewById<Button>(R.id.btn_login_reg).setOnClickListener {
             var navRegister = activity as FragmentNavigation
@@ -78,7 +85,7 @@ class RegisterFragment : Fragment() {
                if (username.text.toString().matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) {
                     if (password.text.toString().length >= 8) {
                         if (confirmPassword.text.toString() == password.text.toString()) {
-                            Toast.makeText(context, "Registro Concluído", Toast.LENGTH_SHORT).show()
+                            firebaseSignup()
                         } else {
                             confirmPassword.setError("As senhas Não Coincidem", icon)
                         }
@@ -91,6 +98,23 @@ class RegisterFragment : Fragment() {
                }
            }
        }
+    }
+
+    private fun firebaseSignup() {
+        btnRegisterReg.isEnabled = false
+        btnRegisterReg.alpha = 0.5f
+        fAuth.createUserWithEmailAndPassword(username.text.toString(), password.text.toString()).addOnCompleteListener {
+            task ->
+            if (task.isSuccessful) {
+                Toast.makeText(context, "Registro Concluído", Toast.LENGTH_SHORT).show()
+                var navHome = activity as FragmentNavigation
+                navHome.navigateFrag(HomeFragment(), true)
+            } else {
+                btnRegisterReg.isEnabled = true
+                btnRegisterReg.alpha = 1.0f
+                Toast.makeText(context, task.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     companion object {
