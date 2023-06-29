@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
-    var recyclerView: RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
     var adapter: AnimalAdapter? = null
     var animalList = ArrayList<Animal>()
     private var database: FirebaseDatabase? = null
@@ -35,47 +35,47 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         database = FirebaseDatabase.getInstance()
         reference = database?.getReference("animals")
 
-        val firebaseListener = object: ValueEventListener {
+        val firebaseListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 animalList.clear()
 
                 val child = snapshot.children
-                child.forEach{
-                    var animals = Animal(it.child("img").value.toString(),
-                    it.child("title").value.toString(),
-                        it.child("description").value.toString())
+                child.forEach {
+                    var animals = Animal(
+                        it.child("img").value.toString(),
+                        it.child("title").value.toString(),
+                        it.child("description").value.toString()
+                    )
 
                     animalList.add(animals)
                 }
-                    adapter?.notifyDataSetChanged()
+                adapter?.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.d("test", error.message)
             }
-
         }
         reference?.addValueEventListener(firebaseListener)
 
-        recyclerView = requireView().findViewById(R.id.recycler_view)
+        recyclerView = binding.recyclerView
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
 
         adapter = AnimalAdapter(animalList)
         recyclerView?.adapter = adapter
 
-        val root: View = binding.root
-
-        return root
+        return view
     }
 
     override fun onDestroyView() {
