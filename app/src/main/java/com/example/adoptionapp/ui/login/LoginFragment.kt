@@ -1,5 +1,6 @@
 package com.example.adoptionapp.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.example.adoptionapp.FragmentNavigation
+import com.example.adoptionapp.MainActivity
 import com.example.adoptionapp.R
 import com.example.adoptionapp.ui.home.HomeFragment
 import com.example.adoptionapp.ui.register.RegisterFragment
@@ -68,8 +70,9 @@ class LoginFragment : Fragment() {
             task ->
             if (task.isSuccessful) {
                 Toast.makeText(context, "Login Concluído",  Toast.LENGTH_SHORT).show()
-                var navHome = activity as FragmentNavigation
-                navHome.navigateFrag(HomeFragment(), true)
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
             } else {
                 btnLogin.isEnabled = true
                 btnLogin.alpha = 1.0f

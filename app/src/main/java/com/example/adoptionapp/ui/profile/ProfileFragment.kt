@@ -1,5 +1,6 @@
 package com.example.adoptionapp.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.adoptionapp.FragmentNavigation
+import com.example.adoptionapp.MainActivity
 import com.example.adoptionapp.databinding.FragmentProfileBinding
 import com.example.adoptionapp.ui.login.LoginFragment
 import com.google.firebase.auth.ktx.auth
@@ -33,14 +35,11 @@ class ProfileFragment : Fragment(){
 
         binding.btnLogout.setOnClickListener {
             Firebase.auth.signOut()
-            var navLogin = activity as FragmentNavigation
-            navLogin.navigateFrag(LoginFragment(), false)
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
-        val textView: TextView = binding.textProfile
-        profileViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

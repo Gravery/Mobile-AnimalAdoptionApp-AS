@@ -62,7 +62,7 @@ class RegisterFragment : Fragment() {
         return view
     }
 
-    private  fun validateEmptyForm(){
+    private fun validateEmptyForm(){
         val icon = AppCompatResources.getDrawable(requireContext(),
         R.drawable.baseline_warning_24)
 
