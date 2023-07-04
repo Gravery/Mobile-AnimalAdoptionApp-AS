@@ -11,6 +11,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.adoptionapp.FragmentNavigation
 import com.example.adoptionapp.MainActivity
 import com.example.adoptionapp.R
@@ -51,9 +54,10 @@ class LoginFragment : Fragment() {
         btnLogin = view.findViewById(R.id.btn_login)
         fAuth = Firebase.auth
 
+
         view.findViewById<Button>(R.id.btn_register).setOnClickListener {
-            var navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(RegisterFragment(), false)
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_main)
+            navController.navigate(R.id.action_navigation_login_to_navigation_register)
         }
 
         view.findViewById<Button>(R.id.btn_login).setOnClickListener {

@@ -25,4 +25,6 @@
     <string name="age">Idade</string>
     <string name="size">Porte</string>
     <string name="contact">Contato</string>
+    <string name="title_login">Login</string>
+    <string name="title_resgister">Registrar</string>
 </resources>

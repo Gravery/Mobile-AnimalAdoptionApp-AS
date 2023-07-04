@@ -1,5 +1,6 @@
 package com.example.adoptionapp.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.navigation.findNavController
 import com.example.adoptionapp.FragmentNavigation
+import com.example.adoptionapp.MainActivity
 import com.example.adoptionapp.R
 import com.example.adoptionapp.ui.home.HomeFragment
 import com.example.adoptionapp.ui.login.LoginFragment
@@ -52,8 +55,8 @@ class RegisterFragment : Fragment() {
 
 
         view.findViewById<Button>(R.id.btn_login_reg).setOnClickListener {
-            var navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(LoginFragment(), false)
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_main)
+            navController.navigate(R.id.action_navigation_register_to_navigation_login)
         }
 
         view.findViewById<Button>(R.id.btn_register_reg).setOnClickListener {
@@ -107,8 +110,9 @@ class RegisterFragment : Fragment() {
             task ->
             if (task.isSuccessful) {
                 Toast.makeText(context, "Registro Concluído", Toast.LENGTH_SHORT).show()
-                var navHome = activity as FragmentNavigation
-                navHome.navigateFrag(HomeFragment(), true)
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
             } else {
                 btnRegisterReg.isEnabled = true
                 btnRegisterReg.alpha = 1.0f

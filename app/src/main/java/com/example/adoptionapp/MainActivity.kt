@@ -1,6 +1,7 @@
 package com.example.adoptionapp
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -28,15 +29,15 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
 
         val currentUser = fAuth.currentUser
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
+
         if(currentUser == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.container, LoginFragment())
-                .commit()
+            navController.navigate(R.id.navigation_login)
+            binding.navView.visibility = View.GONE
         } else {
             val navView: BottomNavigationView = binding.navView
 
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-            val navController = navHostFragment.navController
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             val appBarConfiguration = AppBarConfiguration(
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
             )
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
+            binding.navView.visibility = View.VISIBLE
         }
     }
 
