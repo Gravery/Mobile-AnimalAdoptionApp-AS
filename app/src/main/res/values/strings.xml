@@ -12,14 +12,14 @@
     <string name="confirm_password">Confirmar Senha</string>
     <string name="log_out">Log Out</string>
     <string name="title">Title</string>
-    <string name="animal_description">Animal_description</string>
+    <string name="animal_description">Descrição</string>
     <string name="animal_image">Animal Image</string>
     <string name="perfil">Perfil</string>
     <string name="email">Email</string>
     <string name="anunciar">Anunciar</string>
     <string name="registrar">Registrar</string>
     <string name="nome">Nome do Animal</string>
-    <string name="descricao">Descrição</string>
+    <string name="descricao">Descrição:</string>
     <string name="animal_type">Tipo do animal</string>
     <string name="breed">Raça</string>
     <string name="age">Idade</string>
@@ -27,4 +27,13 @@
     <string name="contact">Contato</string>
     <string name="title_login">Login</string>
     <string name="title_resgister">Registrar</string>
+    <string name="detalhes">Detalhes do Animal</string>
+    <string name="animal_name">Nome:</string>
+    <string name="fill_text">Example</string>
+    <string name="animal_breed">Raça:</string>
+    <string name="animal_age">Idade:</string>
+    <string name="animal_size">Porte:</string>
+    <string name="animal_contact">Contato:</string>
+    <string name="back">Voltar</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adoptionapp.FragmentNavigation
 import com.example.adoptionapp.R
 import com.example.adoptionapp.databinding.FragmentHomeBinding
 import com.example.adoptionapp.ui.login.LoginFragment
@@ -52,9 +51,15 @@ class HomeFragment : Fragment() {
                 val child = snapshot.children
                 child.forEach {
                     var animals = Animal(
-                        it.child("img").value.toString(),
-                        it.child("title").value.toString(),
-                        it.child("description").value.toString()
+                        it.child("id").value.toString(),
+                        it.child("image").value.toString(),
+                        it.child("name").value.toString(),
+                        it.child("description").value.toString(),
+                        it.child("breed").value.toString(),
+                        it.child("age").value.toString(),
+                        it.child("type").value.toString(),
+                        it.child("contact").value.toString(),
+                        it.child("user").value.toString(),
                     )
 
                     animalList.add(animals)
@@ -63,7 +68,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("test", error.message)
+                Log.d("Erro", error.message)
             }
         }
         reference?.addValueEventListener(firebaseListener)
@@ -73,9 +78,22 @@ class HomeFragment : Fragment() {
         recyclerView?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
 
         adapter = AnimalAdapter(animalList)
+        adapter?.setOnAnimalClickListener(object : AnimalAdapter.OnAnimalClickListener {
+            override fun onAnimalClick(animal: Animal) {
+                openAnimalDetails(animal)
+            }
+        })
         recyclerView?.adapter = adapter
 
         return view
+    }
+
+    private fun openAnimalDetails(animal: Animal) {
+        val fragment = AnimalDetailsFragment.newInstance(animal)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {

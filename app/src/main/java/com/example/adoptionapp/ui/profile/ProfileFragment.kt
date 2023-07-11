@@ -12,12 +12,14 @@ import com.example.adoptionapp.FragmentNavigation
 import com.example.adoptionapp.MainActivity
 import com.example.adoptionapp.databinding.FragmentProfileBinding
 import com.example.adoptionapp.ui.login.LoginFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment(){
     private var _binding: FragmentProfileBinding? = null
 
+    private lateinit var auth: FirebaseAuth
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -32,6 +34,10 @@ class ProfileFragment : Fragment(){
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        auth = FirebaseAuth.getInstance()
+
+        binding.textEmail.text = auth.currentUser?.email
 
         binding.btnLogout.setOnClickListener {
             Firebase.auth.signOut()

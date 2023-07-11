@@ -73,7 +73,7 @@ class DashboardFragment : Fragment() {
         button = root.findViewById(R.id.btn_announce)
 
         database = FirebaseDatabase.getInstance()
-        databaseRef = database.reference.child("Images")
+        databaseRef = database.reference
         storageRef = FirebaseStorage.getInstance().reference
         auth = FirebaseAuth.getInstance()
 
@@ -95,6 +95,9 @@ class DashboardFragment : Fragment() {
 
                 if (validateEmptyForm()) {
                     val userRef = databaseRef.child("animals").push()
+                    val uuid = UUID.randomUUID()
+
+                    userRef.child("id").setValue(userRef.key)
                     userRef.child("name").setValue(namestr)
                     userRef.child("description").setValue(descriptionstr)
                     userRef.child("breed").setValue(breedstr)
@@ -104,10 +107,14 @@ class DashboardFragment : Fragment() {
                     userRef.child("user").setValue(userId)
 
                     if (imageUri != null) {
-                        val imageRef = storageRef.child("images/${UUID.randomUUID()}")
+                        val path = "images/${uuid}"
+                        val imageRef = storageRef.child(path)
                         val uploadTask = imageRef.putFile(imageUri!!)
-                        uploadTask.addOnSuccessListener {
-                            Toast.makeText(context, "Imagem enviada com sucesso", Toast.LENGTH_SHORT).show()
+                        uploadTask.addOnSuccessListener { uploadTaskSnapshot ->
+                            uploadTaskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { downloadUri ->
+                                val imageUrl = downloadUri.toString()
+                                userRef.child("image").setValue(imageUrl)
+                            }
                         }.addOnFailureListener {
                             Toast.makeText(context, "Falha ao enviar imagem", Toast.LENGTH_SHORT).show()
                         }
