@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AdoptionApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.AdoptionApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/dark_green</item>
+        <item name="colorPrimaryVariant">@color/darker_green</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +13,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="boxBackgroundColor">@color/dark_blue</item>
+        <item name="cardBackgroundColor">@color/darker_blue</item>
     </style>
 </resources>

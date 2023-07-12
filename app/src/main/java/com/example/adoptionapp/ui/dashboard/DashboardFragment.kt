@@ -116,7 +116,7 @@ class DashboardFragment : Fragment() {
                                 userRef.child("image").setValue(imageUrl)
                             }
                         }.addOnFailureListener {
-                            Toast.makeText(context, "Falha ao enviar imagem", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, getString(R.string.image_failed), Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -126,11 +126,11 @@ class DashboardFragment : Fragment() {
                     age.text.clear()
                     type.text.clear()
                     contact.text.clear()
-                    Toast.makeText(context, "Anúncio Criado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.publish_created), Toast.LENGTH_SHORT).show()
                 }
             }
             else{
-                Toast.makeText(context, "Erro Usuário Não Logado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.error_user_not_logged), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -146,27 +146,27 @@ class DashboardFragment : Fragment() {
         icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
         when {
             TextUtils.isEmpty(name.text.toString().trim()) -> {
-                name.setError("Insira um Nome", icon)
+                name.setError(getString(R.string.insert_name), icon)
                 return false
             }
 
             TextUtils.isEmpty(breed.text.toString().trim()) -> {
-                breed.setError("Insira uma Raça", icon)
+                breed.setError(getString(R.string.insert_breed), icon)
                 return false
             }
 
             TextUtils.isEmpty(age.text.toString().trim()) -> {
-                age.setError("Insira a Idade", icon)
+                age.setError(getString(R.string.insert_age), icon)
                 return false
             }
 
             TextUtils.isEmpty(type.text.toString().trim()) -> {
-                type.setError("Insira o tipo do Animal", icon)
+                type.setError(getString(R.string.insert_type), icon)
                 return false
             }
 
             TextUtils.isEmpty(contact.text.toString().trim()) -> {
-                contact.setError("Insira um Contato", icon)
+                contact.setError(getString(R.string.insert_contact), icon)
                 return false
             }
         }

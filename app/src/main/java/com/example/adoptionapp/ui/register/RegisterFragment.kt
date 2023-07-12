@@ -72,13 +72,13 @@ class RegisterFragment : Fragment() {
         icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
        when {
            TextUtils.isEmpty(username.text.toString().trim())->{
-               username.setError("Insira um Usuário", icon)
+               username.setError(getString(R.string.insert_email), icon)
            }
            TextUtils.isEmpty(password.text.toString().trim())->{
-               password.setError("Insira uma Senha", icon)
+               password.setError(getString(R.string.insert_password), icon)
            }
            TextUtils.isEmpty(confirmPassword.text.toString().trim())->{
-               confirmPassword.setError("Insira a Senha Novamente", icon)
+               confirmPassword.setError(getString(R.string.password_confirm), icon)
            }
 
            username.text.toString().isNotEmpty() &&
@@ -90,14 +90,14 @@ class RegisterFragment : Fragment() {
                         if (confirmPassword.text.toString() == password.text.toString()) {
                             firebaseSignup()
                         } else {
-                            confirmPassword.setError("As senhas Não Coincidem", icon)
+                            confirmPassword.setError(getString(R.string.password_not_equal), icon)
                         }
 
                     } else {
-                        password.setError("A Senha Deve Conter ao Menos 8 Caracteres", icon)
+                        password.setError(getString(R.string.password_length), icon)
                     }
                } else {
-                   username.setError("Insira um Nome Válido", icon)
+                   username.setError(getString(R.string.valid_email), icon)
                }
            }
        }
@@ -109,7 +109,7 @@ class RegisterFragment : Fragment() {
         fAuth.createUserWithEmailAndPassword(username.text.toString(), password.text.toString()).addOnCompleteListener {
             task ->
             if (task.isSuccessful) {
-                Toast.makeText(context, "Registro Concluído", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.register_successful), Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

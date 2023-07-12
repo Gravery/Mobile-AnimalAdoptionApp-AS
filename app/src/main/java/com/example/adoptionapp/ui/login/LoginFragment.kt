@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
         fAuth.signInWithEmailAndPassword(username.text.toString(), password.text.toString()).addOnCompleteListener {
             task ->
             if (task.isSuccessful) {
-                Toast.makeText(context, "Login Concluído",  Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.login_success),  Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
@@ -92,10 +92,10 @@ class LoginFragment : Fragment() {
         icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
         when {
             TextUtils.isEmpty(username.text.toString().trim())->{
-                username.setError("Insira um Usuário", icon)
+                username.setError(getString(R.string.insert_email), icon)
             }
             TextUtils.isEmpty(password.text.toString().trim())->{
-                password.setError("Insira uma Senha", icon)
+                password.setError(getString(R.string.insert_password), icon)
             }
 
             username.text.toString().isNotEmpty() &&
@@ -104,7 +104,7 @@ class LoginFragment : Fragment() {
                 if (username.text.toString().matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) {
                     firebaseSignIn()
                 } else {
-                    username.setError("Insira um Nome Válido", icon)
+                    username.setError(getString(R.string.valid_email), icon)
                 }
             }
         }

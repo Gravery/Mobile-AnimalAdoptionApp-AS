@@ -24,10 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/username"
-            app:boxBackgroundColor="#F8E9FD"
             android:layout_marginTop="50dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp">
+            android:layout_marginEnd="40dp"
+            app:boxBackgroundColor="?attr/boxBackgroundColor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/reg_username"
@@ -39,10 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/password"
-            app:boxBackgroundColor="#F8E9FD"
             android:layout_marginTop="10dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp">
+            android:layout_marginEnd="40dp"
+            app:boxBackgroundColor="?attr/boxBackgroundColor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/reg_password"
@@ -56,10 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/confirm_password"
-            app:boxBackgroundColor="#F8E9FD"
             android:layout_marginTop="10dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp">
+            android:layout_marginEnd="40dp"
+            app:boxBackgroundColor="?attr/boxBackgroundColor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/reg_confirm_password"

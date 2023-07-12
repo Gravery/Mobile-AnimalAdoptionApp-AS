@@ -36,4 +36,20 @@
     <string name="animal_contact">Contato:</string>
     <string name="back">Voltar</string>
     <string name="delete">Delete</string>
+    <string name="publish_created">Anúncio Criado</string>
+    <string name="error_user_not_logged">Erro Usuário Não Logado</string>
+    <string name="insert_name">Insira um Nome</string>
+    <string name="insert_breed">Insira uma Raça</string>
+    <string name="insert_age">Insira a Idade</string>
+    <string name="insert_type">Insira o Tamanho do Animal</string>
+    <string name="insert_contact">Insira um Contato</string>
+    <string name="image_failed">Falha ao enviar imagem</string>
+    <string name="login_success">Login Concluído</string>
+    <string name="insert_email">Insira um Usuário</string>
+    <string name="insert_password">Insira uma Senha</string>
+    <string name="valid_email">Insira um Email Válido</string>
+    <string name="password_confirm">Insira a Senha Novamente</string>
+    <string name="password_not_equal">As senhas Não Coincidem</string>
+    <string name="password_length">A Senha Deve Conter ao Menos 8 Caracteres</string>
+    <string name="register_successful">Registro Concluído</string>
 </resources>

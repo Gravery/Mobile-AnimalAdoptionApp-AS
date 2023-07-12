@@ -36,4 +36,20 @@
     <string name="animal_contact">Contact:</string>
     <string name="back">Back</string>
     <string name="delete">Delete</string>
+    <string name="publish_created">Publishing Created</string>
+    <string name="error_user_not_logged">Error User Not Logged In</string>
+    <string name="insert_name">Insert a Name</string>
+    <string name="insert_breed">Insert a Breed</string>
+    <string name="insert_age">Insert an Age</string>
+    <string name="insert_type">Insert a Size</string>
+    <string name="insert_contact">Insert Contact Info</string>
+    <string name="image_failed">Failed Uploading the Image</string>
+    <string name="login_success">Login Successful</string>
+    <string name="insert_email">Insert User</string>
+    <string name="insert_password">Insert Password</string>
+    <string name="valid_email">Insert a Valid Email</string>
+    <string name="password_confirm">Insert Password Again</string>
+    <string name="password_not_equal">The Passwords are not Equal</string>
+    <string name="password_length">The Password Must Contain 8 Characters</string>
+    <string name="register_successful">Register Successful</string>
 </resources>
