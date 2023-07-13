@@ -52,4 +52,5 @@
     <string name="password_not_equal">The Passwords are not Equal</string>
     <string name="password_length">The Password Must Contain 8 Characters</string>
     <string name="register_successful">Register Successful</string>
+    <string name="add_image">Add Image</string>
 </resources>

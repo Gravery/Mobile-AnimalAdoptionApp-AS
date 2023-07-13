@@ -52,4 +52,5 @@
     <string name="password_not_equal">As senhas Não Coincidem</string>
     <string name="password_length">A Senha Deve Conter ao Menos 8 Caracteres</string>
     <string name="register_successful">Registro Concluído</string>
+    <string name="add_image">Adicionar Imagem</string>
 </resources>
